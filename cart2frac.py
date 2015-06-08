@@ -2,15 +2,19 @@
 
 
 import numpy as np
-import os
+
 
 def theta(vec1,vec2):
 	return np.arccos(float(np.dot(vec1,vec2))/float((np.linalg.norm(vec1)*np.linalg.norm(vec2))))
 #cartesian
-lvax = [ 100., 0., 0.]
-lvay = [ 0.,100.,0.]
-lvaz = [0.,0.,21.446]
+lvax = [ 10., 0., 0.]
+lvay = [ 0.,10.,0.]
+lvaz = [0.,0.,10.]
 
+crd = []
+crd2 = []
+cart = []
+frac = []
 
 # angles and magnitudes
 ax = np.linalg.norm(lvax)
@@ -32,5 +36,20 @@ T = np.matrix ( [[1./ax, -(np.cos(gamma)/(ax*np.sin(gamma))), ((np.cos(alpha)*np
 
 print(T)
 
+file = open("bnnt.xyz",'r')
 
+for line in  file:
+	k = line.split()
+	crd.append(k)
 
+file.close()
+
+for i in range(2,len(crd)):
+	crd2.append(np.array([float(crd[i][1]),float(crd[i][2]),float(crd[i][3])]))
+
+cart = np.reshape(crd2, (5,3))
+
+frac = cart * T
+#print(isinstance(float(crd[2][0]), float))
+print(cart)
+print(frac)
