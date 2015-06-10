@@ -6,10 +6,10 @@ import numpy as np
 
 def theta(vec1,vec2):
 	return np.arccos(float(np.dot(vec1,vec2))/float((np.linalg.norm(vec1)*np.linalg.norm(vec2))))
-#cartesian
-lvax = [ 10., 0., 0.]
-lvay = [ 0.,10.,0.]
-lvaz = [0.,0.,10.]
+#lattice vectors
+lvax = [ 100., 0., 0.]
+lvay = [ 0.,100.,0.]
+lvaz = [0.,0.,21.446]
 
 crd = []
 crd2 = []
@@ -47,7 +47,7 @@ file.close()
 for i in range(2,len(crd)):
 	crd2.append(np.array([float(crd[i][1]),float(crd[i][2]),float(crd[i][3])]))
 
-cart = np.reshape(crd2, (5,3))
+cart = np.reshape(crd2, (len(crd2),3))
 
 frac = cart * T
 #print(isinstance(float(crd[2][0]), float))
